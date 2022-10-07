@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Plugin Name:       Gutenblock Text Block
- * Description:       Example block scaffolded with Create Block tool with additional configs.
+ * Plugin Name:       Gutenburg Text Block
+ * Description:       A box of text.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           0.1.0
  * Author:            Paul Ryder
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gutenblock-boilerplate
+ * Text Domain:       gutenburg-text-block
  *
  * @package           create-block
  */
@@ -21,8 +21,8 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_gutenblock_boilerplate_block_init()
+function create_block_gutenburg_text_block_init()
 {
 	register_block_type(__DIR__ . '/build');
 }
-add_action('init', 'create_block_gutenblock_boilerplate_block_init');
+add_action('init', 'create_block_gutenburg_text_block_init');
