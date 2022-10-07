@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Gutenblock Boilerplate
+ * Plugin Name:       Gutenblock Text Block
  * Description:       Example block scaffolded with Create Block tool with additional configs.
  * Requires at least: 5.9
  * Requires PHP:      7.0
