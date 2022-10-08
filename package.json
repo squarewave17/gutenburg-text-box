@@ -21,5 +21,8 @@
 		"@wordpress/stylelint-config": "^21.2.0",
 		"eslint-config-prettier": "^8.5.0",
 		"stylelint": "^14.13.0"
+	},
+	"dependencies": {
+		"@wordpress/components": "^21.2.0"
 	}
 }
