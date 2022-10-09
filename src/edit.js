@@ -4,13 +4,15 @@ import {
 	RichText,
 	BlockControls,
 	AlignmentToolbar,
+	PanelColorSettings,
+	ContrastChecker,
 	InspectorControls,
 } from "@wordpress/block-editor";
 import { PanelBody, TextControl, ToggleControl } from "@wordpress/components";
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes }) {
-	const { text, alignment, checked } = attributes;
+	const { text, alignment, checked, backgroundColor, textColor } = attributes;
 	const onChangeAlignment = (newAlignment) => {
 		setAttributes({ alignment: newAlignment });
 	};
@@ -20,10 +22,16 @@ export default function Edit({ attributes, setAttributes }) {
 	const onCheckboxChange = (newCheckboxValue) => {
 		setAttributes({ checked: newCheckboxValue });
 	};
+	const onBackgroundColorChange = (newBackgroundColor) => {
+		setAttributes({ backgroundColor: newBackgroundColor });
+	};
+	const onTextColorChange = (newTextColor) => {
+		setAttributes({ textColor: newTextColor });
+	};
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__("Color Settings")} icon="admin-appearance">
+				<PanelBody title={__("Options")}>
 					<TextControl
 						label="Input Label"
 						value={text}
@@ -36,6 +44,29 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={onCheckboxChange}
 					/>
 				</PanelBody>
+				<PanelColorSettings
+					title={__("Color Settings", "gutenburg-text-block")}
+					icon="admin-appearance"
+					initialOpen
+					disableCustomColors={false}
+					colorSettings={[
+						{
+							value: backgroundColor,
+							onChange: onBackgroundColorChange,
+							label: __("Background Color", "gutenburg-text-block"),
+						},
+						{
+							value: textColor,
+							onChange: onTextColorChange,
+							label: __("Text Color", "gutenburg-text-block"),
+						},
+					]}
+				>
+					<ContrastChecker
+						textColor={textColor}
+						backgroundColor={backgroundColor}
+					/>
+				</PanelColorSettings>
 			</InspectorControls>
 			<BlockControls>
 				<AlignmentToolbar value={alignment} onChange={onChangeAlignment} />
@@ -43,6 +74,10 @@ export default function Edit({ attributes, setAttributes }) {
 			<RichText
 				{...useBlockProps({
 					className: `text-box-align-${alignment}`,
+					style: {
+						backgroundColor,
+						color: textColor,
+					},
 				})}
 				onChange={onChangeText}
 				value={text}
